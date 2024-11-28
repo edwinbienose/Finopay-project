@@ -3,6 +3,7 @@ resource "azurerm_resource_group" "rg" {
   name = var.resource_group_name
 }
 
+#Vnet, Vms, NIC, NSG creation
 
 resource "azurerm_virtual_network" "mytf_finopay_Vnet" {
   name                = "finopay-vnet"
@@ -173,6 +174,7 @@ resource "azurerm_subnet_network_security_group_association" "NS-group1" {
     network_security_group_id = azurerm_network_security_group.mytf_database_NSG.id
 }
 
+#load balancer
 
 resource "azurerm_public_ip" "my_public_ip" {
   name                = var.public_ip_name
@@ -356,7 +358,7 @@ resource "azurerm_mssql_firewall_rule" "app_server_firewall_rule" {
 
 
 
-#Azure backup Web tier
+#Azure backup Web tier  #This returns an error as at the time of completing this scrpit due to error status code 500 (internal server error) from Azure end. 
 
 
 resource "azurerm_recovery_services_vault" "mytf_recovery" {
@@ -381,6 +383,7 @@ resource "azurerm_backup_policy_vm" "vm_policy" {
 }
 
 data "azurerm_virtual_machine" "mytf_vm2" {
+
   count=2
   name                = "Web-${count.index}"
   resource_group_name = azurerm_resource_group.rg.name
