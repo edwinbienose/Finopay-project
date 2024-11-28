@@ -10,7 +10,6 @@ The objective of the project is automate the deployment of cloud resource using 
 ## Prerequisite 
 1. Install Terraform
 
-   Download Terraform: 
    
   * Install Terraform from the official Terraform website.
   * Verify Installation: After installation,    run the following command to verify the installation:
